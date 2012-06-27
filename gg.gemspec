@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.add_dependency('yajl-ruby')
 
   # Because I just don't want to live without some of it..
-  s.add_dependency('active_support')
+  s.add_dependency('activesupport')
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
