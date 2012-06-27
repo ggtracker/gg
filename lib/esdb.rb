@@ -23,6 +23,6 @@ module ESDB
   end
 end
 
-require 'lib/esdb/resource'
-require 'lib/esdb/identity'
-require 'lib/esdb/stat'
+require 'esdb/resource'
+require 'esdb/identity'
+require 'esdb/stat'
