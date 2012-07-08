@@ -40,7 +40,7 @@ module ESDB
       @response = get(*args)
     end
 
-    def json
+    def to_hash
       get! unless @response
       JSON.parse(@response)
     end

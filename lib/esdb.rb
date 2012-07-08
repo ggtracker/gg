@@ -9,6 +9,14 @@ module ESDB
           values = value.join(',')
         elsif value === true
           values = 'avg'
+        elsif value.is_a?(Hash)
+          values = value.collect{|calc, conds| 
+            if conds[0].is_a?(Array)
+              conds.collect{|_conds| "#{calc}:[#{_conds.join(',')}]"}.join(',')
+            else
+              "#{calc}:[#{conds.join(',')}]"
+            end
+          }.join(',')
         else
           values = value
         end
