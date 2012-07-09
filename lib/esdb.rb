@@ -11,8 +11,8 @@ module ESDB
           values = 'avg'
         elsif value.is_a?(Hash)
           values = value.collect{|calc, conds| 
-            if conds[0].is_a?(Array)
-              conds.collect{|_conds| "#{calc}:[#{_conds.join(',')}]"}.join(',')
+            if conds.collect(&:class).include?(Array)
+              conds.collect{|_conds| "#{calc}#{":[#{_conds.join(',')}]" if _conds.is_a?(Array)}"}.join(',')
             else
               "#{calc}:[#{conds.join(',')}]"
             end
