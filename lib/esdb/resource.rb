@@ -44,5 +44,10 @@ module ESDB
       get! unless @response
       JSON.parse(@response)
     end
+    
+    def method_missing(method, *args)
+      @hash ||= to_hash
+      return @hash[method.to_s] if @hash.has_key?(method.to_s)
+    end
   end
 end
