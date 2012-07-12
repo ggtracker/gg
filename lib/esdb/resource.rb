@@ -15,7 +15,7 @@ module ESDB
 
       # REST is DRY! Let's just guess our url..
       klass_ep = self.class.to_s.scan(/::(.*?)$/).flatten[0].pluralize.underscore
-      @url ||= "http://localhost:9292/api/v1/#{klass_ep}"
+      @url ||= "http://#{GG.config.host}/api/v1/#{klass_ep}"
 
       # For now, various params will trigger a change in the URI
       # might want to do it more like Rails in esdb ..not sure yet
