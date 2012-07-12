@@ -34,3 +34,4 @@ end
 require 'esdb/resource'
 require 'esdb/identity'
 require 'esdb/stat'
+require 'esdb/replay'
