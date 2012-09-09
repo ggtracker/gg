@@ -20,7 +20,7 @@ module ESDB
       # For now, various params will trigger a change in the URI
       # might want to do it more like Rails in esdb ..not sure yet
       @params = options[:headers][:params]
-      if @params.any?
+      if @params && @params.any?
         @url += "/#{@params.delete(:id)}" if @params[:id]
         options[:headers][:params][:stats] = StatsParam.new(options[:headers][:params][:stats]) if @params[:stats]
       end
@@ -38,6 +38,12 @@ module ESDB
     # instance instead of returning it (but also returns it)
     def get!(*args)
       @response = get(*args)
+    end
+
+    def self.from_hash(hash)
+      resource = self.new
+      resource.response = hash
+      resource
     end
 
     def to_hash
