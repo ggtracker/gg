@@ -1,4 +1,16 @@
 module ESDB
+  # Various Settings
+  # TODO: refactor
+  class << self
+    def api_key=(key)
+      @api_key = key
+    end
+    
+    def api_key
+      @api_key
+    end
+  end
+
   # Simply transforms a stats hash into a StatsParam string
   class StatsParam
     def initialize(stats)
