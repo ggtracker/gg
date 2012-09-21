@@ -38,6 +38,7 @@ module ESDB
         {:name => entity["identity"]["name"],
          :data => smooth(extracted_measures, smoothing_window),
          :color => "#" + entity["color"],
+         :team => entity["team"],
         }
       }.to_json
     end
