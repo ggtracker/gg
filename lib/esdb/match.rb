@@ -40,7 +40,7 @@ module ESDB
          :color => "#" + entity["color"],
          :team => entity["team"],
         }
-      }.to_json
+      }
     end
   end
 end
