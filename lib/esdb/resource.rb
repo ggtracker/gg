@@ -40,6 +40,19 @@ module ESDB
       @response = get(*args)
     end
 
+    # A kind of find_or_create - experimental.
+    # For example identities should be created and returned if sufficient
+    # identifying data is submitted, but no identity is found.
+    # A little HAX'ish right now, need to decide on naming/exact functionality
+    def self.sync(attrs = {})
+      # TODO: I miss reverse_merge!
+      attrs[:access_token] = ESDB.api_key if ESDB.api_key
+
+      resource = self.new(nil, {headers: {params: {id: 'find', create: true}.merge(attrs)}})
+      resource.get!
+      resource
+    end
+
     def self.from_hash(hash)
       resource = self.new
       resource.response = hash
