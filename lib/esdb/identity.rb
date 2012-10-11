@@ -8,5 +8,9 @@ module ESDB
       hash['stats'] = hash['stats'][hash['id'].to_s] if hash['stats']
       hash
     end
+
+    def sc2ranks_url
+      "http://sc2ranks.com/#{gateway}/#{bnet_id}/#{name}"
+    end
   end
 end
