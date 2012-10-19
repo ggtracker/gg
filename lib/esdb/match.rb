@@ -1,5 +1,14 @@
 module ESDB
   class Match < ESDB::Resource
+    # Combines all entities into a hash keys with the team number
+    def teams
+      entities.inject({}){|teams, entity| 
+        teams[entity['team']] ||= []
+        teams[entity['team']] << entity
+        teams
+      }
+    end
+
     def duration_minutes
       return (duration_seconds / 60.0).round
     end
