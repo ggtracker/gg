@@ -4,8 +4,10 @@ module GG
       self.merge!(settings)
     end
     
+    # Poor man's Hashie :)
     def method_missing(method, *args)
       return self[method.to_sym] if has_key?(method.to_sym)
+      return self.send('[]=', method.to_s.delete('=').to_sym, *args) if method.match(/=$/)
     end
   end
   
