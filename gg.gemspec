@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.description = ""
 
   s.add_dependency('rest-client')
+  s.add_dependency('hashie')
   s.add_dependency('yajl-ruby')
 
   # Because I just don't want to live without some of it..
