@@ -6,7 +6,7 @@ module ESDB
       hash = self.to_hash
       if hash['entities'].any?
         summaries = hash['entities'].collect{|e| e['summary']}
-        return summaries.reject{|s| s.empty? || s.nil?}.any?
+        return summaries.reject{|s| s.nil? || s.empty?}.any?
       end
       false
     end
