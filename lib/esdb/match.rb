@@ -18,6 +18,10 @@ module ESDB
       Hashie::Mash.new(self.to_hash['map'])
     end
 
+    def replays
+      self.to_hash['replays'].collect{|replay| Hashie::Mash.new(replay)}
+    end
+
     # Combines all entities into a hash keys with the team number
     def teams
       entities.inject({}){|teams, entity| 
