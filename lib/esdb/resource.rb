@@ -53,9 +53,18 @@ module ESDB
       resource
     end
 
+    def self.from_json(json)
+      resource = self.new
+      resource.instance_variable_set('@response', json)
+      resource
+    end
+
     def self.from_hash(hash)
       resource = self.new
-      resource.response = hash
+
+      # TODO: the response= setter is freaky, and I want to get rid of 
+      # RestClient anyway.
+      resource.instance_variable_set('@response', hash.to_json)
       resource
     end
 
