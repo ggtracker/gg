@@ -9,6 +9,19 @@ module ESDB
       hash
     end
 
+    def race_name
+      case most_played_race
+      when "p"
+        "protoss"
+      when "t"
+        "terran"
+      when "z"
+        "zerg"
+      else
+        nil
+      end
+    end
+
     def sc2ranks_url
       "http://sc2ranks.com/#{gateway}/#{bnet_id}/#{name}"
     end
