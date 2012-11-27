@@ -40,6 +40,23 @@ module ESDB
       @response = get(*args)
     end
 
+    # TODO: prepare to get rid of RestClient potentially, it's not really
+    # maintained anymore anyway. Don't use RestClient specific calls outside
+    # of gg itself and give gg an AR-like API.
+    def self.find(id)
+      resource = self.new(id: id)
+      resource.get!
+
+      if [200..207].include?(resource.response.code)
+        return resource
+      else
+        return nil
+      end
+
+    rescue
+      nil
+    end
+
     # A kind of find_or_create - experimental.
     # For example identities should be created and returned if sufficient
     # identifying data is submitted, but no identity is found.
