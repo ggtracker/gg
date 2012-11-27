@@ -1,6 +1,6 @@
 module ESDB
   class Resource < RestClient::Resource
-    attr_accessor :params
+    attr_accessor :params, :response
 
     def initialize(url=nil, options={}, *args)
       options[:headers] ||= {}
@@ -47,14 +47,15 @@ module ESDB
       resource = self.new(id: id)
       resource.get!
 
-      if [200..207].include?(resource.response.code)
+      if (200..207).include?(resource.response.code)
         return resource
       else
         return nil
       end
 
-    rescue
-      raise ESDB::Exception
+    rescue => e
+      raise ESDB::Exception if e.response && e.response.code != 404
+      nil
     end
 
     # A kind of find_or_create - experimental.
