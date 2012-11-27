@@ -1,4 +1,6 @@
 module ESDB
+  class Exception < Exception; end
+
   # Various Settings
   # TODO: refactor
   class << self

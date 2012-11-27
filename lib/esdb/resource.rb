@@ -54,7 +54,7 @@ module ESDB
       end
 
     rescue
-      nil
+      raise ESDB::Exception
     end
 
     # A kind of find_or_create - experimental.
