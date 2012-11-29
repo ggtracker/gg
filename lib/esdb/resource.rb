@@ -43,8 +43,13 @@ module ESDB
     # TODO: prepare to get rid of RestClient potentially, it's not really
     # maintained anymore anyway. Don't use RestClient specific calls outside
     # of gg itself and give gg an AR-like API.
-    def self.find(id)
-      resource = self.new(id: id)
+    #
+    # Note: the auth option is not used anywhere currently - ggtracker uses
+    # sync below, which always appends the API key anyway. This is needed to
+    # retrieve sensible information from esdb, such as the character_code of an
+    # identity.
+    def self.find(id, options = {})
+      resource = options[:auth] ? self.new(id: id, access_token: ESDB.api_key) : self.new(id: id)
       resource.get!
 
       if (200..207).include?(resource.response.code)
