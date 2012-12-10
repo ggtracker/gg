@@ -10,9 +10,11 @@ module GG
       return self.send('[]=', method.to_s.delete('=').to_sym, *args) if method.match(/=$/)
     end
   end
-  
+
   def self.config
     env = ENV['RACK_ENV'] ? ENV['RACK_ENV'] : (ENV['RAILS_ENV'] ? ENV['RAILS_ENV'] : 'development')
+
+    # warning, as of 20121124 this is superceded by ggtracker/config/initializers/esdb.rb
     @@config ||= Config.new({
       :host => env == 'development' ? 'localhost:9292' : 'alpha.esdb.net'
     })
