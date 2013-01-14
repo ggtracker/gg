@@ -1,6 +1,6 @@
 module ESDB
   class Match < ESDB::Resource
-    # HAX
+
     # Does the match have any summary data?
     def summaries?
       hash = self.to_hash
@@ -16,9 +16,6 @@ module ESDB
       self.replays_count && self.replays_count > 0
     end
 
-    # TODO: when there is ample time, I want to generalize stuff like this via
-    # something like Hashie, but Hashie::Mash just didn't work out right away
-    # it's complicated.. the fact that we have a key called "map" alone..
     def map
       Hashie::Mash.new(self.to_hash['map'])
     end
@@ -38,6 +35,11 @@ module ESDB
 
     def duration_minutes
       return (duration_seconds / 60.0).round
+    end
+
+    def userdelete(user_id)
+      resp = RestClient.post(url + '/userdelete', :access_token => ESDB.api_key, :user_id => user_id)
+      JSON.parse(resp)
     end
   end
 end
