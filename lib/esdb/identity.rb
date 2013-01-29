@@ -23,7 +23,11 @@ module ESDB
     end
 
     def sc2ranks_url
-      "http://sc2ranks.com/#{gateway}/#{bnet_id}/#{name}"
+      if gateway == 'xx'
+        nil
+      else
+        "http://sc2ranks.com/#{gateway}/#{bnet_id}/#{name}"
+      end
     end
   end
 end
