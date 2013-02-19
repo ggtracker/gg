@@ -41,5 +41,13 @@ module ESDB
       resp = RestClient.post(url + '/userdelete', :access_token => ESDB.api_key, :user_id => user_id)
       JSON.parse(resp)
     end
+
+    def expansion
+      (release_string[0] == '2' && release_string != '2.0.4.24944') ? 'HotS' : 'WoL'
+    end
+
+    def expansion_long
+      expansion == 'HotS' ? 'Heart of the Swarm' : 'Wings of Liberty'
+    end
   end
 end
