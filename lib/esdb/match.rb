@@ -43,7 +43,7 @@ module ESDB
     end
 
     def expansion
-      (release_string && release_string[0] == '2' && release_string != '2.0.4.24944') ? 'HotS' : 'WoL'
+      (release_string && release_string[0] == '2' && release_string != '2.0.4.24944' && release_string != '2.0.5.25092') ? 'HotS' : 'WoL'
     end
 
     def expansion_long
