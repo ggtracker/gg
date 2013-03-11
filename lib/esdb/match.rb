@@ -42,12 +42,12 @@ module ESDB
       JSON.parse(resp)
     end
 
-    def expansion
-      (release_string && release_string[0] == '2' && release_string != '2.0.4.24944' && release_string != '2.0.5.25092') ? 'HotS' : 'WoL'
+    def expansion_tag
+      expansion == 0 ? 'WoL' : 'HotS'
     end
 
     def expansion_long
-      expansion == 'HotS' ? 'Heart of the Swarm' : 'Wings of Liberty'
+      expansion == 1 ? 'Heart of the Swarm' : 'Wings of Liberty'
     end
   end
 end
