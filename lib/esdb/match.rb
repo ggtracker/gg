@@ -21,6 +21,7 @@ module ESDB
     end
 
     def replays
+      return [] if self.to_hash['replays'].blank?
       self.to_hash['replays'].collect{|replay| Hashie::Mash.new(replay)}
     end
 
