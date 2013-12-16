@@ -29,5 +29,10 @@ module ESDB
         "http://sc2ranks.com/#{gateway}/#{bnet_id}/#{name}"
       end
     end
+
+    def destroy_all_matches
+      resp = RestClient.post(url + '/destroy_all_matches', :access_token => ESDB.api_key)
+      JSON.parse(resp)
+    end
   end
 end
